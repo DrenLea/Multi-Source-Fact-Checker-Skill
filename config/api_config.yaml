@@ -1,0 +1,36 @@
+# Multi-Source Fact Checker - API Configuration Template
+# Copy this file to api_config.local.yaml and fill in your actual API keys.
+
+google_fact_check:
+  api_key: "${GOOGLE_FACT_CHECK_API_KEY}"
+  base_url: "https://factchecktools.googleapis.com/v1alpha1/claims:search"
+  timeout_sec: 5
+
+lens_protocol:
+  api_key: "${LENS_API_KEY}"
+  base_url: "https://api.lens.dev"
+
+farcaster:
+  hub_url: "${FARCASTER_HUB_URL}"
+  timeout_sec: 5
+
+zscore:
+  rpc_url: "${ZSCORE_RPC_URL}"
+  timeout_sec: 5
+
+tracerank:
+  endpoint: "${TRACERANK_ENDPOINT}"
+  timeout_sec: 5
+
+openai:
+  api_key: "${OPENAI_API_KEY}"
+  model: "gpt-4o-mini"
+
+mock:
+  # Set to true to use mock data for all external APIs (useful for testing/CI)
+  enabled: true
+
+loki:
+  # Loki framework model path
+  model_path: "princeton-nlp/loki-base"
+  device: "cpu"

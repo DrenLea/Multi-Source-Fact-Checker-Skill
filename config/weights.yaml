@@ -1,0 +1,26 @@
+# Multi-Source Fact Checker - Source Weight Configuration
+# These weights determine how different evidence sources contribute to the final rating.
+
+default_weights:
+  web2_fact_check: 0.4      # Traditional fact-checking APIs (Google, Loki)
+  web3_social: 0.3           # Web3 social graph (Lens, Farcaster)
+  chain_reputation: 0.3      # On-chain reputation (zScore, TraceRank)
+
+# Dynamic adjustments applied based on evidence quality signals
+adjustments:
+  high_reputation_first_poster: 0.15   # Boost when first poster has high on-chain rep
+  verified_source: 0.10                # Boost from verified/known fact-checker source
+  known_fake_source: -0.50             # Penalty for sources flagged as unreliable
+  propagation_astroturfing: -0.20      # Penalty for bot-like propagation patterns
+  propagation_normal: 0.05             # Slight boost for organic propagation
+  stale_evidence_days: -0.05           # Per 30 days of staleness, max -0.15
+
+# Rating thresholds
+rating_thresholds:
+  trust_min: 0.75           # >= 0.75 → TRUST
+  suspect_min: 0.25         # >= 0.25 → SUSPECT; < 0.25 → DISTRUST
+
+# Conflict resolution
+conflict:
+  max_divergence: 0.4       # Max allowed score difference between sources before flagging conflict
+  conflict_penalty: -0.15   # Penalty applied when conflict is detected
